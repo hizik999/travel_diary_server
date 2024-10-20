@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import uvicorn
 from db import Database
+from fastapi import HTTPException
 
 
 app = FastAPI()
@@ -12,9 +13,22 @@ def home():
 
 
 @app.get("/tickets")
-def tickets():
+def tickets(id: int = None):
     db = Database()
-    return db.tickets
+    if id is None:
+        return db.tickets
+    results = [ticket for ticket in db.tickets if ticket['id'] == id]
+    if results:
+        return results[0]
+    raise HTTPException(status_code=404, detail=f"Ticket {id} not found")
+
+
+# @app.get("/tickets/{id}")
+# def one_ticket(id: int):
+#     db = Database()
+#     results = [ticket for ticket in db.tickets if ticket['id'] == id]
+#     return results
+
 
 if __name__ == "__main__":
     uvicorn.run("main:app", reload=True)
