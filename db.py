@@ -9,8 +9,8 @@ class Database:
         # TicketModel(id=3, title="Do it", type="Epic", status="In progress"),
     
     def load_database(self):
-        with open('db.json') as f:
-            self._tickets = [TicketModel.model_validate(obj) for obj in json.load(f) ]
+        with open('db.json', 'r') as f:
+            self._tickets = [TicketModel.model_validate(obj) for obj in json.load(f)]
 
     @property
     def tickets(self):
