@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "title": "Ticket 1",
+        "type": "Bug",
+        "status": "In progress"
+    },
+    {
+        "id": 2,
+        "title": "Ticket 2",
+        "type": "Bug",
+        "status": "Ready"
+    },
+    {
+        "id": 3,
+        "title": "Ticket 3",
+        "type": "Bug",
+        "status": "Draft"
+    },
+    {
+        "id": 4,
+        "title": "Ticket 4",
+        "type": "Bug",
+        "status": "Draft"
+    },
+    {
+        "id": 5,
+        "title": "string",
+        "type": "Bug",
+        "status": "Draft"
+    },
+    {
+        "id": 5,
+        "title": "string",
+        "type": "Bug",
+        "status": "Draft"
+    },
+    {
+        "id": 5,
+        "title": "string",
+        "type": "Bug",
+        "status": "Draft"
+    }
+]

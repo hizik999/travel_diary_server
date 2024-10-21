@@ -4,8 +4,10 @@ from db import Database
 from fastapi import HTTPException
 from models import TicketModel
 
-app = FastAPI()
 
+app = FastAPI()
+db = Database()
+db.load_database()
 
 @app.get("/")
 def home():
@@ -14,7 +16,7 @@ def home():
 
 @app.get("/tickets")
 def tickets(id: int = None):
-    db = Database()
+    
     if id is None:
         return db.tickets
     results = [ticket for ticket in db.tickets if ticket.id == id]
@@ -39,6 +41,7 @@ def ticketpost(item: TicketModel):
 ### добавление
 @app.put("/ticketput")
 def ticketput(item: TicketModel):
+    db.append(item)
     return item
 
 
