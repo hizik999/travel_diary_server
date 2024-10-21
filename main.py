@@ -40,9 +40,12 @@ def ticketpost(item: TicketModel):
 
 ### добавление
 @app.put("/ticketput")
-def ticketput(item: TicketViewModel):
+def ticketput(viewmodel: TicketViewModel):
     items = db.tickets
-    item.id = items[-1].id + 1
+    item = TicketModel(id=items[-1].id + 1, 
+                       title=viewmodel.title,
+                       type=viewmodel.type,
+                       status=viewmodel.status)
     db.append(item)
     return item
 
