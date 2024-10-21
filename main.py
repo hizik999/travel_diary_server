@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import uvicorn
 from db import Database
 from fastapi import HTTPException
-from models import TicketModel
+from models import TicketModel, TicketViewModel
 
 
 app = FastAPI()
@@ -16,7 +16,7 @@ def home():
 
 @app.get("/tickets")
 def tickets(id: int = None):
-    
+    db.load_database()
     if id is None:
         return db.tickets
     results = [ticket for ticket in db.tickets if ticket.id == id]
@@ -40,7 +40,9 @@ def ticketpost(item: TicketModel):
 
 ### добавление
 @app.put("/ticketput")
-def ticketput(item: TicketModel):
+def ticketput(item: TicketViewModel):
+    items = db.tickets
+    item.id = items[-1].id + 1
     db.append(item)
     return item
 
