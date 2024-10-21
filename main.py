@@ -48,15 +48,22 @@ def ticketput(item: TicketModel):
 
 
 ### изменение
-@app.patch("/ticketpatch")
+@app.patch("/ticket")
 def ticketpatch(item: TicketModel):
+    results = [ticket for ticket in db.tickets if ticket.id == item.id]
+    if results:
+        results[0].title = item.title
+        results[0].status = item.status
+        results[0].type = item.type
+        db.save_database()    
     return item
 
 
 ### удаление
 @app.delete("/ticket/{id}")
 def ticketdelete(id: int):
-    return id
+    db.delete(id)
+    return db.load_database()
 
 
 if __name__ == "__main__":

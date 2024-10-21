@@ -26,3 +26,8 @@ class Database:
     def append(self, item: TicketModel):
         self._tickets.append(item)
         self.save_database()
+
+
+    def delete(self, id: int):
+        self._tickets = [ticket for ticket in self._tickets if ticket.id != id]
+        self.save_database()
