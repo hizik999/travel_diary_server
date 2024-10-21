@@ -17,7 +17,7 @@ def tickets(id: int = None):
     db = Database()
     if id is None:
         return db.tickets
-    results = [ticket for ticket in db.tickets if ticket['id'] == id]
+    results = [ticket for ticket in db.tickets if ticket.id == id]
     if results:
         return results[0]
     raise HTTPException(status_code=404, detail=f"Ticket {id} not found")
