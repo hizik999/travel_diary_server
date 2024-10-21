@@ -2,6 +2,7 @@ from fastapi import FastAPI
 import uvicorn
 from db import Database
 from fastapi import HTTPException
+from pydantic import BaseModel
 
 
 app = FastAPI()
@@ -28,6 +29,32 @@ def tickets(id: int = None):
 #     db = Database()
 #     results = [ticket for ticket in db.tickets if ticket['id'] == id]
 #     return results
+
+class TicketModel(BaseModel):
+    id: int
+    title: str|None
+
+### продвинутый get (поиск)
+@app.post("/ticketpost")
+def ticketpost(item: TicketModel):
+    return item
+
+### добавление
+@app.put("/ticketput")
+def ticketput(item: TicketModel):
+    return item
+
+
+### изменение
+@app.patch("/ticketpatch")
+def ticketpatch(item: TicketModel):
+    return item
+
+
+### удаление
+@app.delete("/ticket/{id}")
+def ticketdelete(id: int):
+    return id
 
 
 if __name__ == "__main__":
