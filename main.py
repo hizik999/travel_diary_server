@@ -3,6 +3,7 @@ import uvicorn
 from db import Database
 from fastapi import HTTPException
 from models import TicketModel
+from typing import List
 
 
 app = FastAPI()
@@ -14,8 +15,9 @@ def home():
     return { "message": f"Home page" }
 
 
-@app.get("/tickets")
+@app.get("/tickets", response_model=List[TicketModel])
 def tickets(id: int = None):
+
     db.load_database()
     if id is None:
         return db.tickets
@@ -34,12 +36,12 @@ def tickets(id: int = None):
 
 
 ### продвинутый get (поиск)
-@app.post("/ticketpost")
+@app.post("/ticketpost", response_model=TicketModel)
 def ticketpost(item: TicketModel):
     return item
 
 ### добавление
-@app.put("/ticketput")
+@app.put("/ticketput", response_model=TicketModel)
 def ticketput(item: TicketModel):
     items = db.tickets
     item.id = items[-1].id + 1
@@ -48,7 +50,7 @@ def ticketput(item: TicketModel):
 
 
 ### изменение
-@app.patch("/ticket")
+@app.patch("/ticket", response_model=TicketModel)
 def ticketpatch(item: TicketModel):
     results = [ticket for ticket in db.tickets if ticket.id == item.id]
     if results:
@@ -60,7 +62,7 @@ def ticketpatch(item: TicketModel):
 
 
 ### удаление
-@app.delete("/ticket/{id}")
+@app.delete("/ticket/{id}", response_model=List[TicketModel])
 def ticketdelete(id: int):
     db.delete(id)
     return db.load_database()

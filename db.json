@@ -3,54 +3,70 @@
         "id": 1,
         "title": "bbbbbb",
         "type": "Bug",
-        "status": "Draft"
+        "status": "Draft",
+        "severity": 0
     },
     {
         "id": 3,
         "title": "Ticket 3",
         "type": "Bug",
-        "status": "Draft"
+        "status": "Draft",
+        "severity": 0
     },
     {
         "id": 4,
         "title": "Ticket 4",
         "type": "Bug",
-        "status": "Draft"
+        "status": "Draft",
+        "severity": 0
     },
     {
         "id": 5,
         "title": "string",
         "type": "Bug",
-        "status": "Draft"
+        "status": "Draft",
+        "severity": 0
     },
     {
         "id": 6,
         "title": "string",
         "type": "Bug",
-        "status": "Draft"
+        "status": "Draft",
+        "severity": 0
     },
     {
         "id": 7,
         "title": "string",
         "type": "Bug",
-        "status": "Draft"
+        "status": "Draft",
+        "severity": 0
     },
     {
         "id": 8,
         "title": "string",
         "type": "Bug",
-        "status": "Draft"
+        "status": "Draft",
+        "severity": 0
     },
     {
         "id": 9,
         "title": "string",
         "type": "Bug",
-        "status": "Draft"
+        "status": "Draft",
+        "severity": 0
     },
     {
         "id": 10,
         "title": "string",
         "type": "Bug",
-        "status": "Draft"
+        "status": "Draft",
+        "severity": 0
+    },
+    {
+        "id": 11,
+        "title": "string",
+        "type": "Bug",
+        "status": "Draft",
+        "severity": 6
     }
 ]
