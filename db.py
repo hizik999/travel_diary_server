@@ -1,3 +1,6 @@
+from models import TicketModel
+
+
 class Database:
     _tickets = [
         {
