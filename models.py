@@ -1,11 +1,7 @@
 from pydantic import BaseModel
 
-
-class TicketViewModel(BaseModel):
+class TicketModel(BaseModel):
+    id: int
     title: str|None = None
     type: str = "Bug"
     status: str = "Draft"
-
-
-class TicketModel(TicketViewModel):
-    id: int
