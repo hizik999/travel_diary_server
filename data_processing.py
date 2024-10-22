@@ -69,3 +69,6 @@ with open(label_csv_path, 'w', newline='') as csv_file:
         csv_writer.writerow(row)
 
 print("Файл успешно преобразован в CSV.")
+
+
+####################################################################################
