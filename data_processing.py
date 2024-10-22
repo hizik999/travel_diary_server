@@ -72,3 +72,26 @@ print("Файл успешно преобразован в CSV.")
 
 
 ####################################################################################
+motion_csv_path = "useful_dataset/motion.csv"
+headers_motion = ['time', 'acceleration_x', 'acceleration_y', 'acceleration_z', 'gyro_x', 'gyro_y', 'gyro_z',
+                  'magnetometer_x', 'magnetometer_y', 'magnetometer_z', 'orientation_w', 'orientation_x', 'orientation_y', 'orientation_z',
+                  'gravity_x', 'gravity_y', 'gravity_z', 'linear_acceleration_x', 'linear_acceleration_y', 'linear_acceleration_z',
+                  'pressure', 'altitude_derived_etc', 'temperature_derived_etc'
+                  ]
+co = 0
+with open(motion_txt_path, 'r') as txt_file:
+    with open(motion_csv_path, 'w') as csv_file:
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow(headers_motion)
+
+        txt_line = txt_file.readline()
+        while txt_line != '':
+            co += 1
+            if co % 10000 == 0:
+                print('already processed', co, 'lines')
+            row = txt_line.strip().split()
+            csv_writer.writerow(row)
+            txt_line = txt_file.readline()
+
+
+
