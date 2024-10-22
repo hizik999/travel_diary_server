@@ -2,4 +2,4 @@ venv/
 __pycache__/
 *.pycs
 full_archive/
-useful_dataet/
+useful_dataset/
