@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/andrew/vscode_projects/travel_diary_server/mlruns/0/6f2bf7729ea04787adb3a5ab266c9c61/artifacts
+end_time: 1729676213532
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6f2bf7729ea04787adb3a5ab266c9c61
+run_name: youthful-goat-748
+run_uuid: 6f2bf7729ea04787adb3a5ab266c9c61
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1729676211914
+status: 3
+tags: []
+user_id: andrew

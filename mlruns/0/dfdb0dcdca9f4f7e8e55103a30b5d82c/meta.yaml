@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/andrew/vscode_projects/travel_diary_server/mlruns/0/dfdb0dcdca9f4f7e8e55103a30b5d82c/artifacts
+end_time: 1729676202461
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: dfdb0dcdca9f4f7e8e55103a30b5d82c
+run_name: unleashed-chimp-141
+run_uuid: dfdb0dcdca9f4f7e8e55103a30b5d82c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1729676200814
+status: 3
+tags: []
+user_id: andrew

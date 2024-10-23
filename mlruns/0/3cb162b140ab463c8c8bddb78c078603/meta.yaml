@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/andrew/vscode_projects/travel_diary_server/mlruns/0/3cb162b140ab463c8c8bddb78c078603/artifacts
+end_time: 1729683639003
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 3cb162b140ab463c8c8bddb78c078603
+run_name: lyrical-hound-811
+run_uuid: 3cb162b140ab463c8c8bddb78c078603
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1729683637086
+status: 3
+tags: []
+user_id: andrew
