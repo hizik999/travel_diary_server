@@ -4,3 +4,4 @@ __pycache__/
 full_archive/
 useful_dataset/
 config.py
+mlruns/
