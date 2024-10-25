@@ -3,3 +3,4 @@ __pycache__/
 *.pycs
 full_archive/
 useful_dataset/
+config.py
