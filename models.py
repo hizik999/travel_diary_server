@@ -13,3 +13,7 @@ class TicketModel(BaseModel):
     type: TypeEnum = TypeEnum.Bug
     status: str = "Draft"
     severity: int = Field(default=0, ge=0, le=10, multiple_of=2)
+
+class User(BaseModel):
+    username: str
+    email: str
