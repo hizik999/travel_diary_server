@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field, conint, validator
 from typing import Optional
 
 class CoarseSchema(BaseModel):
-    id: conint(ge=0, le=8)  # Ограничение на диапазон ID от 0 до 8
+    id: conint(ge=0, le=1000)  # Ограничение на диапазон ID от 0 до 8
     name: str = Field(..., max_length=50)
 
     class Config:
@@ -21,7 +21,7 @@ class MotionSchema(BaseModel):
     magnetometer_y: float
     magnetometer_z: float
     pressure: float
-    coarse_id: Optional[conint(ge=0, le=8)] = Field(default=0, description="Coarse ID value from 0 to 8")
+    coarse_id: Optional[conint(ge=0, le=1000)] = Field(default=0, description="Coarse ID value from 0 to 8")
 
     @validator('time')
     def validate_time(cls, v):
