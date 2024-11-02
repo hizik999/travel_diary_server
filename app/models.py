@@ -1,5 +1,5 @@
 # schema.py
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field
 from typing import Optional
 
 class Label(BaseModel):

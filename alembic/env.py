@@ -4,7 +4,7 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from alembic import context
 from app.database import Base  # Указываем полный путь
-from app.models import *
+from app.schemas import *
 
 
 # Загрузим конфигурацию Alembic
