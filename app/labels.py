@@ -1,16 +1,12 @@
 from enum import Enum
 
 class Labels(Enum):
-    NULL = (0, "null")
-    STILL = (1, 'still')
-    WALKING = (2, 'walking')
-    RUN = (3, 'run')
-    BIKE = (4, 'bike')
-    CAR = (5, 'car')
-    BUS = (6, 'bus')
-    TRAIN = (7, 'train')
-    SUBWAY = (8, 'subway')
-
-
-for label in Labels:
-    print(f"{label.name} = {label.value}")
+    NULL = {'id': 0, 'name': "null"}
+    STILL = {'id': 1, 'name': "still"}
+    WALKING = {'id': 2, 'name': "walking"}
+    RUN = {'id': 3, 'name': "run"}
+    BIKE = {'id': 4, 'name': "bike"}
+    CAR = {'id': 5, 'name': "car"}
+    BUS = {'id': 6, 'name': "bus"}
+    TRAIN = {'id': 7, 'name': "train"}
+    SUBWAY = {'id': 8, 'name': "subway"}

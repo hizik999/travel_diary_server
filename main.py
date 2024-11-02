@@ -9,6 +9,11 @@ import app.models as models
 app = FastAPI()
 
 
+### Label endpoints
+@app.post("/label/")
+def create_labels(db: Session = Depends(get_db)):
+    return crud.create_labels(db)
+
 # @app.post("/coarse/", response_model=models.Coarse, status_code=status.HTTP_201_CREATED)
 # def create_coarse(coarse: models.Coarse, db: Session = Depends(get_db)):
 #     db_coarse = crud.get_coarse(db, coarse.id)

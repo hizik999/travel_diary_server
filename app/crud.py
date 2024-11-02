@@ -1,11 +1,16 @@
 from sqlalchemy.orm import Session
 from app.models import Label, Motion
 from app.schemas import MotionSchema, LabelSchema
+from app.labels import Labels
 
 ### CRUD label - доступные операции: очистить и заполнить заново labels, получить label по id, получить все labels
 
 def create_labels(db: Session):
-    db.add(Label(id=0, name="STILL"))
+    db.query(LabelSchema).delete()
+    for label in Labels:
+        db.add(LabelSchema(id=label.value['id'], name=label.value['name']))
+    db.commit()
+    return {'msg': 'labels created successfully'}
 
 
 # def create_coarse(db: Session, coarse: CoarseSchema):
