@@ -1,38 +1,38 @@
-# schema.py
-from pydantic import BaseModel, Field, conint, validator
-from typing import Optional
+from sqlalchemy import Column, Float, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
+from app.database import Base
 
-class CoarseSchema(BaseModel):
-    id: conint(ge=0, le=1000)  # Ограничение на диапазон ID от 0 до 8
-    name: str = Field(..., max_length=50)
+class CoarseSchema(Base):
+    __tablename__ = "coarses"
 
-    class Config:
-        orm_mode = True  # Позволяет работать с объектами SQLAlchemy напрямую
+    id = Column(Integer, primary_key=True, index=True, autoincrement=False)  # No auto-increment to restrict IDs 0-8
+    name = Column(String, nullable=False)
 
-class MotionSchema(BaseModel):
-    time: int = Field(..., description="Unix timestamp")
-    acceleration_x: float
-    acceleration_y: float
-    acceleration_z: float
-    gyro_x: float
-    gyro_y: float
-    gyro_z: float
-    magnetometer_x: float
-    magnetometer_y: float
-    magnetometer_z: float
-    pressure: float
-    coarse_id: Optional[conint(ge=0, le=1000)] = Field(default=0, description="Coarse ID value from 0 to 8")
+    # Опционально: определение строкового представления для удобства отладки
+    def __repr__(self):
+        return f"<Coarse(id={self.id}, name={self.name})>"
 
-    @validator('time')
-    def validate_time(cls, v):
-        if v < 0:
-            raise ValueError("Time must be a positive Unix timestamp")
-        return v
+class MotionSchema(Base):
+    __tablename__ = "motions"
 
-    class Config:
-        allow_mutation = False  # Поля неизменяемы, кроме coarse_id
+    id = Column(Integer, primary_key=True, index=True)
+    time = Column(Integer, nullable=False)
+    acceleration_x = Column(Float, nullable=True)
+    acceleration_y = Column(Float, nullable=True)
+    acceleration_z = Column(Float, nullable=True)
+    gyro_x = Column(Float, nullable=True)
+    gyro_y = Column(Float, nullable=True)
+    gyro_z = Column(Float, nullable=True)
+    magnetometer_x = Column(Float, nullable=True)
+    magnetometer_y = Column(Float, nullable=True)
+    magnetometer_z = Column(Float, nullable=True)
+    pressure = Column(Float, nullable=True)
+    coarse_id = Column(Integer, ForeignKey(f'{CoarseSchema.__tablename__}.id'), nullable=True)
+
+    # Связь с моделью Coarse
+    coarse = relationship("Coarse")
 
     def set_coarse_id(self, value: int):
         if not 0 <= value <= 8:
-            raise ValueError("Coarse ID value must be between 0 and 8")
-        object.__setattr__(self, 'coarse_id', value)
+            raise ValueError("Coarse ID must be between 0 and 8")
+        self.coarse_id = value
