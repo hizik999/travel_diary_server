@@ -5,3 +5,4 @@ full_archive/
 useful_dataset/
 mlruns/
 hide/
+.venv/
