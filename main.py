@@ -10,6 +10,7 @@ app = FastAPI()
 
 
 ### Label endpoints
+### обновление labels
 @app.post("/label/")
 def create_labels(db: Session = Depends(get_db)):
     return crud.create_labels(db)

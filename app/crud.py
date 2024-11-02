@@ -3,8 +3,10 @@ from app.models import Label, Motion
 from app.schemas import MotionSchema, LabelSchema
 from app.labels import Labels
 
-### CRUD label - доступные операции: очистить и заполнить заново labels, получить label по id, получить все labels
+### валидация через pydantic (то что в models) в аргументах фунеции, а создание экземпляра бд через sqlalchemy (то что в schemas) внутри функции
 
+### CRUD label - доступные операции: очистить и заполнить заново labels, получить label по id, получить все labels
+### очистить и заполнить заново labels из enum класса Labels
 def create_labels(db: Session):
     db.query(LabelSchema).delete()
     for label in Labels:
