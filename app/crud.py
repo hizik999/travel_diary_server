@@ -1,11 +1,11 @@
 from sqlalchemy.orm import Session
-from app.models import Label, Motion
 from app.schemas import MotionSchema, LabelSchema
 from app.labels import Labels
 
 ### валидация через pydantic (то что в models) в аргументах фунеции, а создание экземпляра бд через sqlalchemy (то что в schemas) внутри функции
 
 ### CRUD label - доступные операции: очистить и заполнить заново labels, получить label по id, получить все labels
+
 ### очистить и заполнить заново labels из enum класса Labels
 def create_labels(db: Session):
     db.query(LabelSchema).delete()
@@ -14,19 +14,13 @@ def create_labels(db: Session):
     db.commit()
     return {'msg': 'labels created successfully'}
 
+### получить label(id, name) по id 
+def get_label(db: Session, label_id: int):
+    return db.query(LabelSchema).filter(LabelSchema.id == label_id).first()
 
-# def create_coarse(db: Session, coarse: CoarseSchema):
-#     db_coarse = Coarse(id=coarse.id, name=coarse.name)
-#     db.add(db_coarse)
-#     db.commit()
-#     db.refresh(db_coarse)
-#     return db_coarse
-
-# def get_coarse(db: Session, coarse_id: int):
-#     return db.query(Coarse).filter(Coarse.id == coarse_id).first()
-
-# def get_coarses(db: Session):
-#     return db.query(Coarse).all()
+### получить все labels
+def get_labels(db: Session):
+    return db.query(LabelSchema).all()
 
 # def update_coarse(db: Session, coarse_id: int, name: str):
 #     db_coarse = db.query(Coarse).filter(Coarse.id == coarse_id).first()

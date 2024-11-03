@@ -4,7 +4,7 @@ from uvicorn import run
 from app.database import get_db
 import app.crud as crud
 import app.models as models
-
+from typing import List
 
 app = FastAPI()
 
@@ -14,6 +14,19 @@ app = FastAPI()
 @app.post("/label/")
 def create_labels(db: Session = Depends(get_db)):
     return crud.create_labels(db)
+
+
+@app.get("/label/{label_id}", response_model=models.Label)
+def get_label(label_id: int, db: Session = Depends(get_db)):
+    db_label = crud.get_label(db=db, label_id=label_id)
+    if db_label is None:
+        raise HTTPException(status_code=404, detail="Label not found")
+    return db_label
+
+@app.get("/label/", response_model=list[models.Label])
+def get_labels(db: Session = Depends(get_db)):
+    return crud.get_labels(db=db)
+
 
 # @app.post("/coarse/", response_model=models.Coarse, status_code=status.HTTP_201_CREATED)
 # def create_coarse(coarse: models.Coarse, db: Session = Depends(get_db)):

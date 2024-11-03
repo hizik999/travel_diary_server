@@ -25,6 +25,7 @@ class Motion(BaseModel):
 
     class Config:
         allow_mutation = False  # Поля неизменяемы, кроме label_id
+        orm_mode = True
 
     def set_label_id(self, value: int):
         if not 0 <= value <= 8:
