@@ -27,7 +27,31 @@ def get_label(label_id: int, db: Session = Depends(get_db)):
 def get_labels(db: Session = Depends(get_db)):
     return crud.get_labels(db=db)
 
+### Motion endpoints
+@app.post("/motion/")
+def create_motion(motion: models.Motion, db: Session = Depends(get_db)):
+    return crud.create_motion(db=db, motion=motion)
 
+@app.get("/motion/{time}")
+def get_motion(time: int, db: Session = Depends(get_db)):
+    db_motion = crud.get_motion(db=db, time=time)
+    if db_motion is None:
+        raise HTTPException(status_code=404, detail=f"Motion not found")
+    return db_motion
+
+@app.get("/motion/")
+def get_motions(time_start: int, time_end: int, db: Session = Depends(get_db)):
+    db_motions = crud.get_motions(db=db, time_start=time_start, time_end=time_end)
+    if db_motions is None:
+        raise HTTPException(status_code=404, detail="Motions not found")
+    return db_motions
+
+@app.get("/motion/{user_imei}")
+def get_motions(user_imei: str, db: Session = Depends(get_db)):
+    db_motions = crud.get_motions(db=db, user_imei=user_imei)
+    if db_motions is None:
+        raise HTTPException(status_code=404, detail="Motions not found")
+    return db_motions
 # @app.post("/coarse/", response_model=models.Coarse, status_code=status.HTTP_201_CREATED)
 # def create_coarse(coarse: models.Coarse, db: Session = Depends(get_db)):
 #     db_coarse = crud.get_coarse(db, coarse.id)

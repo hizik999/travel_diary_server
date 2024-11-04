@@ -1,5 +1,5 @@
 # schema.py
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, constr
 from typing import Optional
 
 class Label(BaseModel):
@@ -11,6 +11,7 @@ class Label(BaseModel):
 
 class Motion(BaseModel):
     time: int = Field(..., description="Unix timestamp", ge=0)
+    user_imei: str = Field(..., description="User IMEI")
     acceleration_x: Optional[float] = None
     acceleration_y: Optional[float] = None
     acceleration_z: Optional[float] = None

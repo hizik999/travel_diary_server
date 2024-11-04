@@ -17,6 +17,7 @@ class MotionSchema(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     time = Column(Integer, nullable=False)
+    user_imei = Column(String, nullable=False)
     acceleration_x = Column(Float, nullable=True)
     acceleration_y = Column(Float, nullable=True)
     acceleration_z = Column(Float, nullable=True)
