@@ -4,15 +4,19 @@ from uvicorn import run
 from app.database import get_db
 import app.crud as crud
 import app.models as models
+from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
+@app.get("/hello")
+async def hello():
+    return JSONResponse(content={"message": "Hello, world!"})
 
 ### Label endpoints
 ### обновление labels
 @app.post("/label/")
 def create_labels(db: Session = Depends(get_db)):
-    return crud.create_labels(db)
+    return {"message": crud.create_labels(db)}
 
 ### получение label по id
 @app.get("/label/{label_id}", response_model=models.Label)
@@ -32,7 +36,7 @@ def get_labels(db: Session = Depends(get_db)):
 ### создание motion
 @app.post("/motion/")
 def create_motion(motion: models.Motion, db: Session = Depends(get_db)):
-    
+
     return crud.create_motion(db=db, motion=motion)
 
 ### получение всех motion

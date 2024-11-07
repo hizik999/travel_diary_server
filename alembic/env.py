@@ -5,10 +5,22 @@ from sqlalchemy import pool
 from alembic import context
 from app.database import Base  # Указываем полный путь
 from app.schemas import *
-
+import os
 
 # Загрузим конфигурацию Alembic
 config = context.config
+
+POSTGRES_USER = os.getenv("POSTGRES_USER")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
+POSTGRES_DB = os.getenv("POSTGRES_DB")
+POSTGRES_HOST_PORT = os.getenv("POSTGRES_HOST_PORT", "localhost:5432")
+
+DATABASE_URL = f"postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST_PORT}/{POSTGRES_DB}"
+
+if DATABASE_URL:
+    config.set_main_option("sqlalchemy.url", DATABASE_URL)
+else:
+    raise ValueError("DATABASE_URL environment variable is not set")
 
 # Настройка логирования
 if config.config_file_name is not None:
